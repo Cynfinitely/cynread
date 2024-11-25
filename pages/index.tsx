@@ -1,4 +1,4 @@
-import { firestore } from "@/lib/firebase"; // Import Firestore
+import { firestore } from "../lib/firebase";
 import { useState } from "react";
 
 const Home: React.FC = () => {
@@ -34,7 +34,6 @@ const Home: React.FC = () => {
     <div style={{ textAlign: "center", marginTop: "20px" }}>
       <h1>Kuran Hatim Programı</h1>
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        {" "}
         {page === null
           ? `Sayfa alarak başlaybilirsiniz`
           : `Şu an ki sayfa: ${page}`}
@@ -59,6 +58,7 @@ const Home: React.FC = () => {
             height: 0,
             overflow: "hidden",
           }}>
+          {/* Iframe */}
           <iframe
             src={`https://kuran.hayrat.com.tr/icerik/kuran_hizmetlerimiz/kuran-oku.aspx?sayfa=${page}`}
             style={{
@@ -70,6 +70,18 @@ const Home: React.FC = () => {
               border: "none",
             }}
             title={`Kuran Sayfa ${page}`}></iframe>
+
+          {/* Transparent Overlay */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "transparent", // Make the overlay invisible
+              zIndex: 1, // Ensure it is above the iframe
+            }}></div>
         </div>
       )}
     </div>
